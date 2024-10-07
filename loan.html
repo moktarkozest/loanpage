@@ -1,0 +1,364 @@
+<div class="mokh_loan-calculator-container">
+    <div class="mokh_loan-header">
+        <h1>Welcome to Our Loan Calculator</h1><br>
+        <p class="mokh_description">Find out the maximum loan you can afford based on your monthly salary and expenses.</p>
+    </div>
+    
+    <div class="mokh_loan-input-section">
+        <div class="mokh_input-group">
+            <label for="salary">Monthly Salary:</label>
+            <input type="text" id="salary" placeholder="Enter your monthly salary">
+        </div>
+        
+        <div class="mokh_input-group">
+            <label for="fees">Monthly Fees:</label>
+            <input type="text" id="fees" placeholder="Enter your monthly fees">
+        </div>
+
+        <div class="mokh_input-group">
+            <label for="interest-rate">Interest Rate:</label>
+            <div class="input-wrapper">
+                <input type="text" id="interest-rate" placeholder="0" min="0" max="100">
+                <span class="fixed-symbol">%</span>
+            </div>
+        </div>
+
+        <div class="mokh_button-group">
+            <button id="calculate-button">Calculate</button>
+        </div>
+    </div>
+
+    <div class="mokh_monthly-payment">
+        Possible Monthly Payment: <span id="monthly-payment-value">0.00</span> TND
+    </div>
+
+    <div class="mokh_loan-results">
+        <div class="mokh_loan-card">
+            <h4>5 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="5years">0.00 DT</span></p>
+        </div>
+        
+        <div class="mokh_loan-card">
+            <h4>7 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="7years">0.00 DT</span></p>
+        </div>
+        
+        <div class="mokh_loan-card">
+            <h4>10 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="10years">0.00 DT</span></p>
+        </div>
+        
+        <div class="mokh_loan-card">
+            <h4>15 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="15years">0.00 DT</span></p>
+        </div>
+        
+        <div class="mokh_loan-card">
+            <h4>20 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="20years">0.00 DT</span></p>
+        </div>
+        
+        <div class="mokh_loan-card">
+            <h4>25 Years</h4>
+            <p>Maximum Loan:</p>
+            <p><span id="25years">0.00 DT</span></p>
+        </div>
+        
+    </div>
+</div>
+
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+
+        .mokh_loan-calculator-container {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            margin: 0 auto;
+        }
+
+        .mokh_loan-header {
+            text-align: center;
+            padding: 0 0 30px;
+            border-bottom: 2px solid #004272;
+            margin-bottom: 30px;
+        }
+
+        .mokh_loan-header h1 {
+            font-size: 32px;
+            color: #004272;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .mokh_description {
+            color: #666666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .mokh_loan-input-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .mokh_input-group {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+        }
+
+        .mokh_input-group label {
+            font-size: 16px;
+            color: #090F21;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .mokh_input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .mokh_input-group input:focus {
+            border-color: #004272;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        #interest-rate {
+            padding-right: 30px; /* Make space for the percentage symbol */
+            width: 100%;
+        }
+
+        .fixed-symbol {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4a5568;
+            font-size: 16px;
+            pointer-events: none; /* Prevent interaction */
+        }
+
+        .mokh_button-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 45px;
+        }
+
+        #calculate-button {
+            background: #004272;
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        #calculate-button:hover {
+            background: #00315a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .mokh_monthly-payment {
+            text-align: center;
+            font-size: 24px;
+            color: #2d3748;
+            font-weight: 600;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #DDE9F6;
+            border-radius: 8px;
+        }
+
+        .mokh_loan-results {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .mokh_loan-card {
+            padding: 25px;
+            border-radius: 8px;
+            background: #DDE9F6;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .mokh_loan-card h4 {
+            margin-bottom: 15px;
+            color: #090F21;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .mokh_loan-card p {
+            color: #666666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .mokh_loan-card span {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .mokh_loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: #004272;
+        }
+        @media (max-width: 768px) {
+            .mokh_loan-calculator-container {
+                padding: 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mokh_loan-input-section {
+                grid-template-columns: 1fr;
+            }
+
+            .mokh_button-group {
+                grid-column: span 1;
+                padding-top: 20px;
+            }
+
+            .mokh_loan-results {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mokh_loan-header h1 {
+                font-size: 24px;
+            }
+
+            .mokh_description {
+                font-size: 16px;
+            }
+
+            .mokh_monthly-payment {
+                font-size: 20px;
+                padding: 15px;
+            }
+
+            .mokh_loan-card h4 {
+                font-size: 18px;
+            }
+
+            .mokh_loan-card p {
+                font-size: 14px;
+            }
+        }
+
+</style>
+
+<script>
+        // Function to format currency inputs with thousand separators
+        function formatCurrencyInput(event) {
+            let input = event.target;
+            let value = input.value.replace(/[^\d]/g, ''); // Remove all non-digit characters
+
+            // Format the number with commas
+            if (value) {
+                // Convert value to a number and format it with commas
+                value = parseInt(value, 10).toLocaleString('en-US');
+                input.value = `${value} TND`; // Append "TND" after the formatted number
+            } else {
+                input.value = '';
+            }
+        }
+
+        // Function to handle the interest rate input
+        function formatInterestRate(event) {
+            let input = event.target;
+            // Keep only numbers and decimal points
+            let value = input.value.replace(/[^\d.]/g, '');
+            
+            if (value > 100) {
+                value = 100; // Restrict to a maximum value of 100
+            }
+            
+            input.value = value; // Set the cleaned numeric value
+        }
+
+        // Function to initialize cards without calculation
+        function dt_initCards() {
+            const loanTerms = [5, 7, 10, 15, 20, 25];
+            loanTerms.forEach(term => {
+                const spanid = term + 'years';
+                document.getElementById(spanid).textContent = '0.00 TND';
+            });
+        }
+
+        // Function to perform calculations and update the results
+        function dt_calculateAndDisplayLoans() {
+            const monthlySalary = parseFloat(document.getElementById('salary').value.replace(/[^\d]/g, '')) || 0;
+            const monthlyFees = parseFloat(document.getElementById('fees').value.replace(/[^\d]/g, '')) || 0;
+            const interestRateInput = document.getElementById('interest-rate').value;
+            const dt_interestRate = parseFloat(interestRateInput) / 100 || 0.11; // Convert percentage to decimal
+            const disposableIncome = monthlySalary - monthlyFees;
+            const maxMonthlyPayment = disposableIncome * 0.4;
+
+            // Format the monthly payment with commas
+            document.getElementById('monthly-payment-value').textContent = parseFloat(maxMonthlyPayment.toFixed(2)).toLocaleString('en-US');
+
+            const loanTerms = [5, 7, 10, 15, 20, 25];
+            
+            loanTerms.forEach(term => {
+                const principal = dt_calculatePrincipal(maxMonthlyPayment, term, dt_interestRate);
+                const spanid = term + 'years';
+                // Format the principal amount with commas
+                document.getElementById(spanid).textContent = parseFloat(principal.toFixed(2)).toLocaleString('en-US') + ' TND';
+            });
+        }
+
+        // Function to calculate the principal based on inputs
+        function dt_calculatePrincipal(payment, years, rate) {
+            const r = rate / 12; // Monthly interest rate
+            const n = years * 12; // Total number of payments
+            const principal = payment * ((Math.pow((1 + r), n) - 1) / (r * Math.pow((1 + r), n)));
+            return principal;
+        }
+
+        // Initialize the cards on page load without calculation
+        window.onload = function () {
+            dt_initCards();
+        };
+
+        // Attach event listeners to inputs and calculate button
+        document.getElementById('salary').addEventListener('input', formatCurrencyInput);
+        document.getElementById('fees').addEventListener('input', formatCurrencyInput);
+        document.getElementById('interest-rate').addEventListener('input', formatInterestRate);
+
+        document.getElementById('calculate-button').addEventListener('click', dt_calculateAndDisplayLoans);
+</script>
